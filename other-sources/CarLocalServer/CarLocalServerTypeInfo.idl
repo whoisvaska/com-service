@@ -1,0 +1,58 @@
+// bring in core IDL files, 
+// notice the semicolon
+import "oaidl.idl";
+
+// define IStats interface
+//<Guid("0DB00772-4A6D-425F-8378-7FE44C89142F")>
+
+
+[object, uuid(0DB00772-4A6D-425F-8378-7FE44C89142F),
+oleautomation, helpstring("Get the status information about this car")]
+interface IStats : IUnknown
+{
+    HRESULT DisplayStats();
+    HRESULT GetPetName([out, retval] BSTR* petName);
+};
+
+// define the IEngine interface
+//<Guid("3E953BC3-547E-4E85-8FF5-C7FD2419C7C6")>
+
+[object, uuid(3E953BC3-547E-4E85-8FF5-C7FD2419C7C6),
+oleautomation, helpstring("Rev your car and slow it down")]
+interface IEngine : IUnknown
+{
+    HRESULT SpeedUp();
+    HRESULT GetMaxSpeed([out, retval] int* maxSpeed);
+    HRESULT GetCurSpeed([out, retval] int* curSpeed);
+};
+
+// define the ICreateMyCar interface
+//<Guid("53AA5A2D-E3F0-40B5-8B29-D05B23E6B6C7")>
+
+[object, uuid(53AA5A2D-E3F0-40B5-8B29-D05B23E6B6C7),
+oleautomation, helpstring("This lets you create a car object")]
+interface ICreateMyCar : IUnknown
+{
+    HRESULT SetPetName([in]BSTR petName);
+    HRESULT SetMaxSpeed([in] int maxSp);
+};
+
+// library statement
+//<Guid("BAF37DDB-E9FC-4348-9909-EB9D896F9BEC")>
+
+[uuid(BAF37DDB-E9FC-4348-9909-EB9D896F9BEC), version(1.0),
+helpstring("Car server with typeLib")]
+library CarLocalServerLib
+{
+    //<Guid("AF07C674-9883-4EDF-B9A5-0CBB5B30AB42")>
+
+    importlib("stdole32.tlb");
+    [uuid(AF07C674-9883-4EDF-B9A5-0CBB5B30AB42)]
+    coclass MyCar
+    {
+        [default] interface ICreateMyCar;
+        interface IStats;
+        interface IEngine;
+    };
+};
+

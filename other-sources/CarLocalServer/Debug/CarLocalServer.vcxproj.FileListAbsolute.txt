@@ -1,0 +1,2 @@
+D:\OneDrive\OneDrive - Peter the Great St. Petersburg Polytechnical University\veeam\com-service\other-sources\CarLocalServer\Debug\CarLocalServer.exe
+E:\Projects\veeam\com-service\other-sources\CarLocalServer\Debug\CarLocalServer.exe
